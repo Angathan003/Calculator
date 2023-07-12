@@ -10,12 +10,14 @@ def button_clear():
 
 def button_equal():
     try:
-        result = eval(display.get())
+        expression = display.get()
+        result = eval(expression)
         display.delete(0, tk.END)
-        display.insert(tk.END, result)
-    except:
+        display.insert(tk.END, expression + "\n= " + str(result))
+    except Exception as e:
         display.delete(0, tk.END)
-        display.insert(tk.END, "Error")
+        display.insert(tk.END, "Error: " + str(e))
+
 
 # Create the main window
 root = tk.Tk()
@@ -69,4 +71,3 @@ button_divide.grid(row=4, column=3)
 
 # Start the main event loop
 root.mainloop()
-
